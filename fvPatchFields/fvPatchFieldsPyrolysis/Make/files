@@ -1,0 +1,6 @@
+coupledFixedIncidentRadiation/coupledFixedIncidentRadiationFvPatchScalarField.C
+flowRateInletVelocityCoupled/flowRateInletVelocityCoupledFvPatchVectorField.C
+coupledFixedIncidentRadiationFeedback/coupledFixedIncidentRadiationFeedbackFvPatchScalarField.C
+
+LIB = $(FOAM_USER_LIBBIN)/libfvPatchFieldsPyrolyse
+
