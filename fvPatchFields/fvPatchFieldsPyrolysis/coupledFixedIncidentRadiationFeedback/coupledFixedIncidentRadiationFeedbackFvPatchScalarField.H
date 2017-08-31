@@ -39,29 +39,35 @@ Description
     In the fluid side an average temperature is calculated and used as fixed
     value BC.
 
+    Radiant flux from fire is radiated back at the surface of material. 
+ 
     Example usage:
 
     In the solid:
-    upperWall_to_channel
+    region0_to_pmmaRegion_pmma
     {
         type            compressible::coupledFixedIncidentRadiationFeedback;
-        value           uniform 500;
-        neighbourFieldName T;
-        neighbourFieldRadiativeName Qr;
-        fieldRadiativeName none;
-        K               K;
+        value           $internalField;
+        neighbourFieldName            T;		// name of the field — no or T
+        neighbourFieldRadiativeName	Qr;
+        fieldRadiativeName		none;
+        K		solidThermo;
+        QrIncident	50000;                      // W/m2
+        emissivityMode	solidRadiation;
+    }
+    In the fluid:
+    coupledPatch
+    {
+        type            compressible::coupledFixedIncidentRadiationFeedback;
+        value           $internalField;
+        neighbourFieldName            T;		// name of the field — no or T
+        neighbourFieldRadiativeName	none;
+        fieldRadiativeName		Qr;
+        K		K;
+        emissivityMode	solidRadiation;
+        QrIncident	0;
     }
 
-    In the fluid:
-    channel_to_upperWall
-    {
-        type            compressible::coupledFixedIncidentRadiationFeedback;
-        value           uniform 500;
-        neighbourFieldName T;
-        neighbourFieldRadiativeName none;
-        fieldRadiativeName Qr;
-        K               K;
-    }
 
     Needs to be on underlying directMapped(Wall)FvPatch.
 
