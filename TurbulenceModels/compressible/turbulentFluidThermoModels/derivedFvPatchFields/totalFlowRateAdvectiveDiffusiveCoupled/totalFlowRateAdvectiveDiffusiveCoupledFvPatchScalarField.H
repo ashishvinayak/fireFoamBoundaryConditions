@@ -30,6 +30,15 @@ Description
     The massFluxFraction sets the fraction of the flux of each particular
     species.
 
+    coupledPatch
+    {
+        type            totalFlowRateAdvectiveDiffusiveCoupled;
+        nbrPhi          phiGas;
+        massFluxFraction 1;            
+        rho             rho;
+        value           uniform 0;
+    }
+
 SourceFiles
     totalFlowRateAdvectiveDiffusiveCoupledFvPatchScalarField.C
 
