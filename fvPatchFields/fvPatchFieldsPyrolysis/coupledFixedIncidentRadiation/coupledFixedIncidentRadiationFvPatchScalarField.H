@@ -38,29 +38,32 @@ Description
 
     In the fluid side an average temperature is calculated and used as fixed
     value BC.
-
+ 
     Example usage:
 
     In the solid:
-    upperWall_to_channel
+    region0_to_pmmaRegion_pmma
     {
         type            compressible::coupledFixedIncidentRadiation;
-        value           uniform 500;
-        neighbourFieldName T;
-        neighbourFieldRadiativeName Qr;
-        fieldRadiativeName none;
-        K               K;
+        value           $internalField;
+        neighbourFieldName            T;		// name of the field — no or T
+        neighbourFieldRadiativeName	Qr;
+        fieldRadiativeName		none;
+        K		solidThermo;
+        QrIncident	50000;                      // W/m2
+        emissivityMode	solidRadiation;
     }
-
     In the fluid:
-    channel_to_upperWall
+    coupledPatch
     {
         type            compressible::coupledFixedIncidentRadiation;
-        value           uniform 500;
-        neighbourFieldName T;
-        neighbourFieldRadiativeName none;
-        fieldRadiativeName Qr;
-        K               K;
+        value           $internalField;
+        neighbourFieldName            T;		// name of the field — no or T
+        neighbourFieldRadiativeName	none;
+        fieldRadiativeName		Qr;
+        K		K;
+        emissivityMode	solidRadiation;
+        QrIncident	0;
     }
 
     Needs to be on underlying directMapped(Wall)FvPatch.
