@@ -39,13 +39,14 @@ Description
 
     Example of the boundary condition specification:
     @verbatim
-    inlet
+    region0_to_pmmaRegion_pmma
     {
-        type            flowRateInletVelocityCoupled;
-        phi             phi;
-        rho             rho;
-        neigPhi         neigPhiName_;    // Volumetric/mass flow rate [m3/s or kg/s]
-        value           uniform (0 0 0); // placeholder
+        type    flowRateInletVelocityCoupled;
+        phi     phi;
+        rhoName  rho;
+        nbrPhi  phiGas;
+        hocPyr  10;                 // placeholder
+        value   uniform (0 0 0);    // placeholder
     }
     @endverbatim
 

@@ -41,13 +41,14 @@ Description
 
     Example usage:
 
-    wall
+    coupledPatch
     {
-        type            fixedIncidentRadiation;
-        QrIncident      uniform 500;
-        kappa           solidThermo;
-        KappaName       none;
+        type                  fixedIncidentRadiation;
+        QrIncident            50000;
+        kappaMethod           solidThermo;
+        kappaName             none;
     }
+
 
     kappa:
     - 'lookup' :    lookup volScalarField (or volSymmTensorField) with name
